@@ -1,0 +1,21 @@
+# encoding: utf-8
+
+LEDGER_CUSTOMER_BALANCE = 0
+LEDGER_SYSTEM_BALANCE = 1
+LEDGER_CUSTOMER_EXTRA = 2
+LEDGER_SYSTEM_EXTRA = 3
+LEDGER_CUSTOMER_CHARGE = 4
+LEDGER_SYSTEM_CHARGE = 5
+LEDGER_CUSTOMER_PAYMENT = 6
+LEDGER_CUSTOMER_TAX = 7
+
+LEDGER_CATEGORY_CHOICES = (
+    (LEDGER_CUSTOMER_BALANCE, 'Balanço cliente'),
+    (LEDGER_CUSTOMER_EXTRA, 'Não contábil cliente'),
+    (LEDGER_CUSTOMER_CHARGE, 'Cobrança cliente'),
+    (LEDGER_CUSTOMER_PAYMENT, 'Pagamento cliente'),
+    (LEDGER_CUSTOMER_TAX, 'Imposto cliente'),
+    (LEDGER_SYSTEM_BALANCE, 'Balanço sistema'),
+    (LEDGER_SYSTEM_EXTRA, 'Não contábil sistema'),
+    (LEDGER_SYSTEM_CHARGE, 'Cobrança sistema'),
+)

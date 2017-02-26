@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+set -e
+export PATH=$HOME/compose/account/bin/:$PATH

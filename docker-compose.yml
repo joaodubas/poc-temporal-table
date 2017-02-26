@@ -1,0 +1,31 @@
+---
+version: '2'
+
+volumes:
+    db_data:
+
+services:
+    db:
+        image: joaodubas/postgis:9.6
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: &db_pass account
+            POSTGRES_USER: &db_user account
+            POSTGRES_DB: &db_name account
+        volumes:
+            - db_data:/var/lib/postgresql/data
+        hostname: &db_host db
+    app:
+        image: joaodubas/account
+        restart: always
+        environment:
+            DB_HOST: *db_host
+            DB_PASS: *db_pass
+            DB_USER: *db_user
+            DB_NAME: *db_name
+        volumes:
+            - ./:/opt/src
+        hostname: app
+        command: sleep infinity
+        depends_on:
+            - db

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+POSTGRES_USER=account
+POSTGRES_DB=$POSTGRES_USER
+docker-compose exec --user postgres db psql -U $POSTGRES_USER -W $POSTGRES_DB
