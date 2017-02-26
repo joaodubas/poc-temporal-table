@@ -22,6 +22,9 @@ class MetaInfo(models.Model):
 class Note(models.Model):
     note = models.TextField(default='')
 
+    class Meta:
+        abstract = True
+
 
 class Common(Timestamp, MetaInfo, Note):
     class Meta:
