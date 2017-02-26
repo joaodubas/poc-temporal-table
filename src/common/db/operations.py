@@ -2,8 +2,6 @@
 from django.db import migrations, models
 from psycopg2.extensions import AsIs
 
-from core.models import Entry, Event
-
 
 def temporal_table(klass: models.Model) -> list:
     """Create sql operations to create a temporal table based in a given model.
@@ -64,6 +62,7 @@ def json_gin_index(klass: models.Model, field_name: str) -> list:
 
     """
     table_name = AsIs(klass._meta.db_table)
+    field_name = AsIs(field_name)
     fwd_index = 'CREATE INDEX %s_%s_gin ON %s USING GIN (%s jsonb_path_ops);'
     bwd_index = 'DROP INDEX %s_%s_gin;'
     operations = [
@@ -73,4 +72,3 @@ def json_gin_index(klass: models.Model, field_name: str) -> list:
         )
     ]
     return operations
-
