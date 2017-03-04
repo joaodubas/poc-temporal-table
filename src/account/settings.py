@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+# import django_opentracing as do
+# import lightstep.tracer
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'django_opentracing.OpenTracingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -124,3 +128,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# OpenTracing config
+# OPENTRACING_TRACE_ALL = True
+# OPENTRACING_TRACED_ATTRIBUTES = ['path', 'method', 'GET', 'POST']
+# OPENTRACING_TRACER = do.DjangoTracer(lightstep.tracer.Tracer(
+#     component_name='account',
+#     access_token=os.environ.get('OPENTRACING_TOKEN', ''),
+#     verbosity=0,
+# ))
