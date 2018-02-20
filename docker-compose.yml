@@ -3,6 +3,10 @@ version: '2'
 
 volumes:
     db_data:
+    influxdb_data:
+    chronograf_data:
+    geoindex_data:
+    cache_data:
 
 services:
     db:
@@ -15,6 +19,35 @@ services:
         volumes:
             - db_data:/var/lib/postgresql/data
         hostname: &db_host db
+    geo_index:
+        image: tile38/tile38:latest
+        restart: always
+        volumes:
+            - geoindex_data:/data
+        hostname: &geo_index_host index
+    cache:
+        image: redis:3.2.8
+        restart: always
+        volumes:
+            - cache_data:/data
+        hostname: &cache_host cache
+    influxdb:
+        image: influxdb:1.4-alpine
+        volumes:
+            - influx_data:/var/lib/influxdb
+        hostname: &influxdb_host influxdb
+    telegraf:
+        image: telegraf:1.5-alpine
+        depends_on:
+            - influxdb
+        hostname: &telegraf_host telegraf
+    chronograf:
+        image: chronograf:1.4-alpine
+        volumes:
+            - chronograf_data:/var/lib/chronograf
+        depends_on:
+            - influxdb
+        hostname: chronograf
     app:
         image: joaodubas/account
         restart: always
@@ -23,9 +56,16 @@ services:
             DB_PASS: *db_pass
             DB_USER: *db_user
             DB_NAME: *db_name
+            INFLUXDB_HOST: *influxdb_host
+            GEOINDEX_HOST: *geo_index_host
+            CACHE_HOST: *cache_host
         volumes:
             - ./:/opt/src
         hostname: app
         command: sleep infinity
         depends_on:
             - db
+            - telegraf
+            - influxdb
+            - geo_index
+            - cache
