@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.8.2
 LABEL maintainer="Joao Paulo Dubas <joao.dubas@gmail.com>" \
     version="1.0" \
     description="POC using django and temporal tables to handle accounting app."
