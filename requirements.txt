@@ -5,4 +5,4 @@ ipython==5.2.2
 pytz==2016.10
 djangorestframework==3.11.0
 django_opentracing==1.1.0
-lightstep==3.0.5
+lightstep==4.4.3
