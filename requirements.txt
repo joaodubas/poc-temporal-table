@@ -3,6 +3,6 @@ Django==1.11.29
 uWSGI==2.0.14
 ipython==5.2.2
 pytz==2020.1
-djangorestframework==3.11.0
+djangorestframework==3.11.1
 django_opentracing==1.1.0
 lightstep==4.4.3
