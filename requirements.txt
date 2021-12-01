@@ -1,7 +1,7 @@
 psycopg2==2.9.2
 Django==3.2.9
 uWSGI==2.0.20
-ipython==7.29.0
+ipython==7.30.0
 pytz==2021.3
 djangorestframework==3.12.4
 django_opentracing==1.1.0
